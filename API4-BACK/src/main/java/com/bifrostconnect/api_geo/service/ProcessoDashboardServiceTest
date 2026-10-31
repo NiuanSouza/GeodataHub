@@ -1,0 +1,84 @@
+package com.bifrostconnect.api_geo.service;
+
+import com.bifrostconnect.api_geo.dto.ProcessoMetricasResponse;
+import com.bifrostconnect.api_geo.repository.ProcessoDashboardRepository;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class ProcessoDashboardServiceTest {
+
+    @Mock
+    private ProcessoDashboardRepository repository;
+
+    @InjectMocks
+    private ProcessoDashboardService service;
+
+    @Test
+    void deveCalcularCorretamenteAsMetricasPorSituacao() {
+
+        Long totalProcessos = 10L;
+
+        Map<String, Long> porSituacao = new LinkedHashMap<>();
+        porSituacao.put("Concluídos", 5L);
+        porSituacao.put("Falhas", 3L);
+        porSituacao.put("Quarentena", 2L);
+
+        Map<String, Long> porEtapa = new LinkedHashMap<>();
+        porEtapa.put("Processamento", 10L);
+
+        Map<String, Long> porConjunto = new LinkedHashMap<>();
+        porConjunto.put("Imóveis rurais", 10L);
+
+        when(repository.contarTodosOsProcessos())
+                .thenReturn(totalProcessos);
+
+        when(repository.contarPorSituacao())
+                .thenReturn(porSituacao);
+
+        when(repository.contarPorEtapa())
+                .thenReturn(porEtapa);
+
+        when(repository.contarPorConjunto())
+                .thenReturn(porConjunto);
+
+        ProcessoMetricasResponse resultado =
+                service.buscarMetricas();
+
+        assertEquals(10L, resultado.totalProcessos());
+
+        assertEquals(
+                5L,
+                resultado.porSituacao().get("Concluídos")
+        );
+
+        assertEquals(
+                3L,
+                resultado.porSituacao().get("Falhas")
+        );
+
+        assertEquals(
+                2L,
+                resultado.porSituacao().get("Quarentena")
+        );
+
+        long somaSituacoes =
+                resultado.porSituacao().get("Concluídos")
+                        + resultado.porSituacao().get("Falhas")
+                        + resultado.porSituacao().get("Quarentena");
+
+        assertEquals(
+                resultado.totalProcessos(),
+                somaSituacoes
+        );
+    }
+}

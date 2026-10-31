@@ -1,0 +1,16 @@
+services:
+  db_sistema_geo:
+    image: postgis/postgis:15-3.3
+    container_name: postgres_postgis_api_geo
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: sistema_geo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  pg_data:

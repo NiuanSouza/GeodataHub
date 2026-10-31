@@ -1,0 +1,111 @@
+/* =========================================
+   Global Button Classes (Animated)
+   ========================================= */
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--btn-radius);
+  box-shadow: var(--btn-shadow);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition:
+    color 0.4s ease-in-out,
+    border-color 0.4s ease-in-out,
+    opacity 0.2s ease;
+  border: 2px solid var(--color-brand);
+  background: transparent;
+  color: var(--color-brand);
+  outline: none;
+  z-index: 1;
+}
+
+/* O fundo desliza da esquerda para a direita */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-brand);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.btn:focus {
+  box-shadow:
+    0 0 0 2px var(--color-background),
+    0 0 0 4px var(--color-brand);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+  color: #ffffff; /* Texto branco no hover */
+  border-color: var(--color-brand);
+  box-shadow: 0 4px 15px rgba(242, 101, 34, 0.3);
+}
+
+.btn:hover:not(:disabled)::before {
+  transform: scaleX(1);
+}
+
+/* Primary btn overrides if needed, but above acts as primary */
+.btn_primary {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+.btn_primary::before {
+  background: var(--color-brand);
+}
+
+/* Variação Success */
+.btn_success {
+  border-color: var(--vis-c-success);
+  color: var(--vis-c-success);
+}
+.btn_success::before {
+  background: var(--vis-c-success);
+}
+.btn_success:hover:not(:disabled) {
+  border-color: var(--vis-c-success);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* Variação Danger */
+.btn_recuse {
+  border-color: var(--vis-c-danger);
+  color: var(--vis-c-danger);
+}
+.btn_recuse::before {
+  background: var(--vis-c-danger);
+}
+.btn_recuse:hover:not(:disabled) {
+  border-color: var(--vis-c-danger);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+/* Variação Outline (mesmo comportamento base) */
+.btn_outline {
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+.btn_outline::before {
+  background: var(--color-brand);
+}
+.btn_outline:hover:not(:disabled) {
+  border-color: var(--color-brand);
+  color: #ffffff;
+}

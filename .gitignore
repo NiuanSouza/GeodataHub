@@ -1,0 +1,51 @@
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Node / Front-end
+node_modules/
+dist/
+dist-ssr/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+playwright-report/
+test-results/
+.eslintcache
+*.tsbuildinfo
+
+# Java / Maven / Back-end
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/wrapper/maven-wrapper.jar
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# File storage and binaries
+zona_bruta_storage/*
+!zona_bruta_storage/.gitkeep
+zona_processada_storage/*
+!zona_processada_storage/.gitkeep
+API4-BACK/executavel/api-geo.jar
+API4-BACK/executavel/frontend/

@@ -1,6 +1,0 @@
-[submodule "API4-BACK"]
-	path = API4-BACK
-	url = https://github.com/Bifrost-Connect/API4-BACK.git
-[submodule "API4-FRONT"]
-	path = API4-FRONT
-	url = https://github.com/Bifrost-Connect/API4-FRONT.git

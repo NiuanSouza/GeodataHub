@@ -1,0 +1,75 @@
+services:
+  # ----------------------------------------------------------------------------
+  # 1. Banco de Dados Geoespacial PostGIS
+  # ----------------------------------------------------------------------------
+  database:
+    image: imresamu/postgis:15-3.4
+    container_name: geodatahub_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-root}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
+      POSTGRES_DB: ${DB_NAME:-sistema_geo}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d sistema_geo"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - geodatahub_net
+
+  # ----------------------------------------------------------------------------
+  # 2. Back-End Java Spring Boot
+  # ----------------------------------------------------------------------------
+  backend:
+    build:
+      context: ./API4-BACK
+      dockerfile: Dockerfile
+    container_name: geodatahub_backend
+    restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8080
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-sistema_geo}
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      SPRING_FLYWAY_ENABLED: "true"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "validate"
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    networks:
+      - geodatahub_net
+
+  # ----------------------------------------------------------------------------
+  # 3. Front-End Vue 3 + Nginx (com Proxy Reverso)
+  # ----------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./API4-FRONT
+      dockerfile: Dockerfile
+    container_name: geodatahub_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    networks:
+      - geodatahub_net
+
+volumes:
+  pg_data:
+    driver: local
+
+networks:
+  geodatahub_net:
+    driver: bridge
+

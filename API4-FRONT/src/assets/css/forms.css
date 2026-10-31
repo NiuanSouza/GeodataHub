@@ -1,0 +1,45 @@
+/* Form Elements */
+.input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.875rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(242, 101, 34, 0.15);
+}
+.input:disabled {
+  background-color: var(--color-background-mute);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--color-heading);
+}
+
+/* Checkboxes and Radios */
+.checkbox,
+.radio {
+  accent-color: var(--color-brand);
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+.checkbox:disabled,
+.radio:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

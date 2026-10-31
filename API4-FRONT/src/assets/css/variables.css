@@ -1,0 +1,78 @@
+/* Color palette adapted for Visiona (Aerospace Orange Theme) */
+:root {
+  /* Cor Principal da Marca (O Laranja Visiona) */
+  --vis-brand-orange: #f26522;
+  --vis-brand-orange-hover: #d9541a;
+  --vis-brand-orange-light: #ff8547;
+
+  /* Light Palette (Brancos e cinzas bem claros) */
+  --vis-c-light: #ffffff;
+  --vis-c-light-soft: #f8f9fa;
+  --vis-c-light-mute: #f1f3f5;
+
+  /* Dark Palette (Azul escuro espacial/tecnológico) */
+  --vis-c-dark: #0f172a;
+  --vis-c-dark-soft: #1e293b;
+  --vis-c-dark-mute: #334155;
+
+  /* Text Colors */
+  --vis-c-text-dark-1: #1e293b;
+  --vis-c-text-dark-2: rgba(30, 41, 59, 0.75);
+
+  --vis-c-text-light-1: #f8fafc;
+  --vis-c-text-light-2: rgba(248, 250, 252, 0.7);
+
+  /* Dividers */
+  --vis-c-divider-light-1: rgba(30, 41, 59, 0.25);
+  --vis-c-divider-light-2: rgba(30, 41, 59, 0.12);
+  --vis-c-divider-dark-1: rgba(248, 250, 252, 0.35);
+  --vis-c-divider-dark-2: rgba(248, 250, 252, 0.15);
+}
+
+/* Semantic color variables for this project (Padrão: Light Theme) */
+:root {
+  --color-brand: var(--vis-brand-orange);
+  --color-brand-hover: var(--vis-brand-orange-hover);
+
+  --color-background: var(--vis-c-light-mute); /* Grey background for the app #f1f3f5 */
+  --color-surface: var(--vis-c-light); /* White background for cards #ffffff */
+  --color-surface-soft: var(--vis-c-light-soft); /* Slightly off-white for internal card elements #f8f9fa */
+  
+  --color-border: var(--vis-c-divider-light-2);
+  --color-border-hover: var(--vis-c-divider-light-1);
+
+  --color-heading: var(--vis-c-text-dark-1);
+  --color-text: var(--vis-c-text-dark-1);
+
+  --section-gap: 160px;
+}
+
+/* Custom UI Colors */
+:root {
+  --vis-c-success: #10b981;
+  --vis-c-success-hover: #059669;
+  --vis-c-danger: #ef4444;
+  --vis-c-danger-hover: #dc2626;
+  --vis-c-warning: #f59e0b;
+  --vis-c-info: #3b82f6;
+
+  --btn-radius: 0;
+  --btn-shadow: none;
+  --btn-transform: none;
+}
+
+/* Override para o Dark Mode (Controlado pelo Vue via atributo no HTML) */
+:root[data-theme='dark'] {
+  --color-brand: var(--vis-brand-orange-light);
+  --color-brand-hover: var(--vis-brand-orange);
+
+  --color-background: var(--vis-c-dark);
+  --color-surface: var(--vis-c-dark-soft);
+  --color-surface-soft: var(--vis-c-dark-mute);
+
+  --color-border: var(--vis-c-divider-dark-2);
+  --color-border-hover: var(--vis-c-divider-dark-1);
+
+  --color-heading: var(--vis-c-text-light-1);
+  --color-text: var(--vis-c-text-light-2);
+}

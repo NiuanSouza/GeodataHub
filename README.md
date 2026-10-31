@@ -26,6 +26,10 @@
 
 <table>
   <tr>
+    <td><strong>Deploy em Produção:</strong></td>
+    <td><a href="https://niuansouza.duckdns.org/geodatahub/" target="_blank"><strong>🌐 https://niuansouza.duckdns.org/geodatahub/</strong></a></td>
+  </tr>
+  <tr>
     <td><strong>Status do Projeto:</strong></td>
     <td>🟡 Em andamento</td>
   </tr>

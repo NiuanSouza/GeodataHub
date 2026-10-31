@@ -1,0 +1,10 @@
+{
+  "orderId": 4,
+  "liveUrl": "https://niuansouza.duckdns.org/geodatahub/",
+  "description": "Plataforma geoespacial analítica de ingestão, validação topológica e processamento territorial em PostGIS com quarentena de dados geográficos e tabulares.",
+  "imagesCount": 1,
+  "technologies": {
+    "frontend": ["Vue 3", "Vite", "TypeScript", "Pinia", "MapLibre GL"],
+    "backend": ["Java", "Spring Boot", "PostgreSQL", "PostGIS", "Flyway"]
+  }
+}
